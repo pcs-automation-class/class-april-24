@@ -3,22 +3,24 @@ second_number = int(input("Enter second number: "))
 operation = input("Enter operation or 'q' to quit: ")
 result = None
 
-if operation == "q":
-    print("Exiting the calculator.")
+while True:
+    if operation == "q":
+        print("Exiting the calculator.")
+        break
 
-if operation == "+":
-    result = first_number + second_number
-elif operation == "-":
-    result = first_number - second_number
-elif operation == "*":
-    result = first_number * second_number
-elif operation == "/":
-    if second_number != 0:
-        result = first_number / second_number
+    if operation == "+":
+        result = first_number + second_number
+    elif operation == "-":
+        result = first_number - second_number
+    elif operation == "*":
+        result = first_number * second_number
+    elif operation == "/":
+        if second_number != 0:
+            result = first_number / second_number
+        else:
+            print("Error: Division by zero!")
     else:
-        print("Error: Division by zero!")
-else:
-    print("Invalid operation")
+        print("Invalid operation")
 
-if result is not None:
-    print("Result:", result)
+    if result is not None:
+        print("Result:", result)
