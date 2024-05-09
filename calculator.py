@@ -1,9 +1,11 @@
 first_number = int(input("Enter first number: "))
 second_number = int(input("Enter second number: "))
-operation = input("Enter operation: ")
+operation = input("Enter operation (+, -, *, /) or 'q' to quit: ")
 result = None
 
-# Add loop and ask to continue or quit
+if operation == "q":
+    print("Exiting the calculator.")
+
 if operation == "+":
     result = first_number + second_number
 elif operation == "-":
@@ -11,15 +13,12 @@ elif operation == "-":
 elif operation == "*":
     result = first_number * second_number
 elif operation == "/":
-    result = first_number / second_number
+    if second_number != 0:
+        result = first_number / second_number
+    else:
+        print("Error: Division by zero!")
 else:
     print("Invalid operation")
 
-print(result)
-
-
-# Convert C -> F , F -> C, miles -> km, km -> miles
-# 1. C -> F ,
-# 2. F -> C,
-# 3. miles -> km,
-# 4. km -> miles
+if result is not None:
+    print("Result:", result)
