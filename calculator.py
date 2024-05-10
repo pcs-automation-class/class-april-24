@@ -18,7 +18,7 @@ elif operation == "/":
     if second_number != 0:
         result = first_number / second_number
     else:
-        print("Error message: Division by zero!")
+        print("Error: Division by zero!")
 else:
     print("Invalid operation")
 
