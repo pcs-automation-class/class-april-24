@@ -14,7 +14,7 @@ class App(tk.Tk):
 
 
     def show_error(self):
-        msg = "Warning :)"
+        msg = " Warning :)"
         mb.showerror("Warning", msg)
 
 if __name__ == "__main__":
