@@ -14,7 +14,7 @@ class App(tk.Tk):
 
 
     def show_error(self):
-        msg = "Warning! Your data has started to be deleted after 5 sec:)"
+        msg = "Warning message! Your data has started to be deleted after 5 sec:)"
         mb.showerror("Warning", msg)
 
 if __name__ == "__main__":
