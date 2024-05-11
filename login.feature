@@ -4,7 +4,6 @@ Feature: Login page tests
   Background: Login
     Given Open "qa" env
 #    Then Wait for "2" seconds
-    Then Login as "sales"
     Then Page contains element "//div[contains(text(), 'Sign You In')]"
     Then Type "pcs.automationclass+10@gmail.com" in field "//input[@id='login_email']"
     Then Type "!Qwerty7890" in field "//input[@id='login_password']"
