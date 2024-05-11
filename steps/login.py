@@ -14,16 +14,32 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 
 
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from webdriver_manager.firefox import GeckoDriverManager
+
+
+# @step('Open "{url}" url')
+# def open_url(context, url):
+#     chrome_options = Options()
+#     chrome_options.add_argument("--incognito")
+#
+#     context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+#     # TODO add incognito mode
+#     context.driver.maximize_window()
+#     #  Maximize screen size
+#     context.driver.get(url)
+
+#Firefox call
+
 @step('Open "{url}" url')
 def open_url(context, url):
-    chrome_options = Options()
-    chrome_options.add_argument("--incognito")
-
-    context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-    # TODO add incognito mode
+    firefox_options = FirefoxOptions()
+    firefox_options.add_argument("--private")
+    context.driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=firefox_options)
     context.driver.maximize_window()
-    #  Maximize screen size
     context.driver.get(url)
+
 
 
 @step('Wait for "{timeout}" seconds')
@@ -61,7 +77,7 @@ def step_impl(context, city):
 def open_env(context, env):
     environments = {
         'prod': 'https://lifetwig.com/',
-        'staging': 'staging.lifetwig.com',
+        'staging': 'https://test.sugaringfactory.com/index.php?route=account%2Flogin',
         'dev': 'development.lifetwig.com',
         'uat': 'uat.lifetwig.com'
     }
@@ -73,7 +89,9 @@ def open_env(context, env):
 def verify_page_exists(context, page_name):
     pages = {
         'login': "//div[contains(text(), 'Sign You In')]",
-        'app': "//div[contains(@class, 'left-panel_user_info_card')]"
+        'app': "//div[contains(@class, 'left-panel_user_info_card')]",
+        'suga_login': "//h2[contains(text(), 'Returning Customer')]",
+        'app_sugar': "//a[contains(text(), 'Edit Account')]",
     }
     page_contains_element(context, pages[page_name])
 
@@ -82,11 +100,16 @@ def verify_page_exists(context, page_name):
 def step_impl(context, role):
     credentials = {
         'admin': ('pcs.automationclass+10@gmail.com', '!Qwerty7890'),
-        'sales': ('mytrialemail7890@gmail.com', 'ForpyCharm312$'),
+        'tester': ('timkotimofeytest@gmail.com', '12345'),
         'user': ('qwertyuiop@yahoo.com', 'Sotirov1!'),
     }
 
-    type_in(context, credentials[role][0], "//input[@id='login_email']")
-    type_in(context, credentials[role][1], "//input[@id='login_password']")
-    click_element(context, "//span[text()='Login']")
+    if role == 'admin':
+        type_in(context, credentials[role][0], "//input[@id='login_email']")
+        type_in(context, credentials[role][1], "//input[@id='login_password']")
+        click_element(context, "//span[text()='Login']")
+    elif role == 'tester':
+        type_in(context, credentials[role][0], "//input[@name='email']")
+        type_in(context, credentials[role][1], "//input[@name='password']")
+        click_element(context, "//div[@class='login-buttons']/a[@class='button-cont-right']")
 
