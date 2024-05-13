@@ -21,6 +21,9 @@ class MoveWindowApp:
         self.create_calculator()
         self.center_window(self.root)  # Center the main window
 
+        # Bind the "q" key event to check for exit
+        self.root.bind('<Key>', self.check_key)
+
     def move_window(self, event=None):
         if self.root.state() == "normal":
             random_x = random.randint(-50, 50)
@@ -132,11 +135,9 @@ class MoveWindowApp:
     def show_exit_prompt(self):
         messagebox.showinfo("Exit Prompt", "Press 'q' to exit.")
 
-        def check_key(event):
-            if event.char == 'q':
-                self.exit_app()
-
-        self.root.bind('<Key>', check_key)
+    def check_key(self, event):
+        if event.char == 'q':
+            self.exit_app()
 
     def exit_app(self):
         self.root.destroy()
