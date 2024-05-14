@@ -19,27 +19,23 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from webdriver_manager.firefox import GeckoDriverManager
 
 
-# @step('Open "{url}" url')
-# def open_url(context, url):
-#     chrome_options = Options()
-#     chrome_options.add_argument("--incognito")
-#
-#     context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-#     # TODO add incognito mode
-#     context.driver.maximize_window()
-#     #  Maximize screen size
-#     context.driver.get(url)
-
-#Firefox call
-
 @step('Open "{url}" url')
 def open_url(context, url):
-    firefox_options = FirefoxOptions()
-    firefox_options.add_argument("--private")
-    context.driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=firefox_options)
-    context.driver.maximize_window()
-    context.driver.get(url)
-
+    if context.browser == "Chrome":
+        chrome_options = Options()
+        chrome_options.add_argument("--incognito")
+        context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+        context.driver.maximize_window()
+        context.driver.get(url)
+    elif context.browser == "Firefox":
+        firefox_options = FirefoxOptions()
+        firefox_options.add_argument("--private")
+        context.driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()),
+                                           options=firefox_options)
+        context.driver.maximize_window()
+        context.driver.get(url)
+    else:
+        assert False, "Unsupported browser " + context.browser
 
 
 @step('Wait for "{timeout}" seconds')
@@ -49,7 +45,8 @@ def wait_sec(context, timeout):
 
 @step('Page contains element "{xpath}"')
 def page_contains_element(context, xpath):
-    element = context.driver.find_elements(By.XPATH, f"{xpath}")
+    # element = context.driver.find_elements(By.XPATH, f"{xpath}")
+    element = WebDriverWait(context.driver, 10).until(EC.presence_of_element_located((By.XPATH, f"{xpath}")))
     assert element, f"Element with xpath {xpath} is not found"
 
 
@@ -62,9 +59,9 @@ def click_element(context, xpath):
 
 @step('Type "{text}" in field "{xpath}"')
 def type_in(context, text, xpath):
-    element = context.driver.find_elements(By.XPATH, f"{xpath}")
-    assert element, f"Element with xpath {xpath} is not found"
-    element[0].send_keys(text)
+    elements = context.driver.find_elements(By.XPATH, f"{xpath}")
+    assert elements, f"Element with xpath {xpath} is not found"
+    elements[0].send_keys(text)
 
 
 @step("Get weather in {city}")
@@ -94,13 +91,13 @@ def verify_page_exists(context, page_name):
         'app': "//div[contains(@class, 'left-panel_user_info_card')]",
         'suga_login': "//h2[contains(text(), 'Returning Customer')]",
         'sug_forgot_pass': "//a[contains(text(), 'Forgotten Password')]",
+        'app_sugar': "//a[contains(text(), 'Edit Account')]"
     }
     page_contains_element(context, pages[page_name])
 
     # switch to link Forgotten Password
     if page_name == 'sug_forgot_pass':
         click_element(context, "//a[contains(text(), 'Forgotten Password')]")
-
 
 
 @step('Login as "{role}"')
@@ -127,3 +124,12 @@ def step_impl(context, role):
         click_element(context, "//span[contains(text(), 'Continue')]")
 
 
+@step("Login with following credentials")
+def login_with_cred(context):
+    for row in context.table:
+        if row['element'] == 'login':
+            xpath = "//input[@id='login_email']"
+        else:
+            xpath = "//input[@id='login_password']"
+        type_in(context, row['value'], xpath)
+    click_element(context, "//span[text()='Login']")
