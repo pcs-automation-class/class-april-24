@@ -1,3 +1,4 @@
 Feature: Lifetwig tests
 
-  Scenario: Login
+  Scenario: Login with happy path
+    Given Open "qa" environment

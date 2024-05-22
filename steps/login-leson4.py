@@ -47,3 +47,4 @@ def type_in(context, text, xpath):
 def step_impl(context, city):
     temperature = get_weather(city)
     print(f"Temperature in {city}: {temperature} C")
+
