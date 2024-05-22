@@ -20,9 +20,9 @@ Feature: Login page tests
 
 
   Scenario: 1
-#    Given Open "https://lifetwig.com/" url
-#    Then Wait for "2" seconds
-#    Then Page contains element "//div[contains(text(), 'Sign You In')]"
+    Given Open "https://lifetwig.com/" url
+    Then Wait for "2" seconds
+    Then Page contains element "//div[contains(text(), 'Sign You In')]"
     Then Type "mytrialemail7890@gmail.com" in field "//input[@id='login_email']"
     Then Wait for "2" seconds
     Then Type "ForpyCharm312$" in field "//input[@id='login_password']"
