@@ -47,3 +47,38 @@ def type_in(context, text, xpath):
 def step_impl(context, city):
     temperature = get_weather(city)
     print(f"Temperature in {city}: {temperature} C")
+
+
+@step('Open "{env}" environment')
+def open_env(context, env):
+    # create dictionary with env
+    environments = {
+        'prod': 'https://lifetwig.com/',
+        'staging': 'staging.lifetwig.com',
+        'dev': 'development.lifetwig.com',
+        'uat': 'uat.lifetwig.com'
+    }
+    # call open url function
+    open_url(context, environments[env])
+
+
+@step('Verify "{page_name}" page exists')
+def verify_page_exists(context, page_name):
+    pages = {
+        'login': "//div[contains(text(), 'Sign You In')]",
+        'app': "//div[contains(@class, 'left-panel_user_info_card')]"
+    }
+
+    page_contains_element(context, pages[page_name])
+
+@step('Login as "{role}"')
+def step_impl(context, role):
+    credentials = {
+        'admin': ('makstester77@gmail.com', 'Kms_12345'),
+        'sales': ('mytrialemail7890@gmail.com', 'ForpyCharm312$'),
+        'user': ('qwertyuiop@yahoo.com', 'Sotirov1!')
+    }
+
+    type_in(context, credentials[role][0], "//input[@id='login_email']")
+    type_in(context, credentials[role][1], "//input[@id='login_password']")
+    click_element(context, "//span[text()='Login']")
