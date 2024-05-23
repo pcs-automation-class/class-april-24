@@ -71,7 +71,6 @@ def verify_page_exists(context, page_name):
 
     page_contains_element(context, pages[page_name])
 
-
 @step('Login as "{role}"')
 def step_impl(context, role):
     credentials = {
