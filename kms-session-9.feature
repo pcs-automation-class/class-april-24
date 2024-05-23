@@ -1,5 +1,4 @@
 Feature: Lifetwig tests
-
   Scenario: Login with happy path
     Given Open "prod" environment
     Then Verify "login" page exists
