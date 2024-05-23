@@ -1,5 +1,5 @@
 while True:
-    first_number = int(input("Enter first number: "))
+    first_number = int(input("Enter first number now: "))
     second_number = int(input("Enter second number: "))
     operation = input("Enter operation: ")
     result = None
