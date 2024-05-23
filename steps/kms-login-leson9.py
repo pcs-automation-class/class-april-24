@@ -61,7 +61,6 @@ def open_env(context, env):
     # call open url function
     open_url(context, environments[env])
 
-
 @step('Verify "{page_name}" page exists')
 def verify_page_exists(context, page_name):
     pages = {
