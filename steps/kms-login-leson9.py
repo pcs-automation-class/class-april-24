@@ -15,6 +15,7 @@ from api import get_weather
 @step('Open "{url}" url')
 def open_url(context, url):
     context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    context.driver.maximize_window()
     context.driver.get(url)
 
 
@@ -61,6 +62,7 @@ def open_env(context, env):
     # call open url function
     open_url(context, environments[env])
 
+
 @step('Verify "{page_name}" page exists')
 def verify_page_exists(context, page_name):
     pages = {
@@ -69,6 +71,7 @@ def verify_page_exists(context, page_name):
     }
 
     page_contains_element(context, pages[page_name])
+
 
 @step('Login as "{role}"')
 def step_impl(context, role):
