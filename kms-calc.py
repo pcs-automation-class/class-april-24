@@ -23,22 +23,3 @@ while True:
     if continue_input == "n":
         print("Quit")
     break
-
-
-# def abc(a, b, c):
-#     return a + b - c
-#
-# text_to_print = abc(a=10, b=2, c=2)
-# print(text_to_print)
-
-
-# def func(a, b):
-#     assert a == b, "a not equal b in this test"
-#
-# func(a=1, b=4)
-
-
-# def func(a, b):
-#     assert [], "a not equal b in this test"
-
-# func(a=1, b=2)
