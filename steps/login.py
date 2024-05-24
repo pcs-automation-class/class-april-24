@@ -14,6 +14,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 
 
+from selenium import webdriver
+from selenium.webdriver.edge.service import Service
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+
+
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from webdriver_manager.firefox import GeckoDriverManager
@@ -25,6 +31,13 @@ def open_url(context, url):
         chrome_options = Options()
         chrome_options.add_argument("--incognito")
         context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+        context.driver.maximize_window()
+        context.driver.get(url)
+    elif context.browser == "Edge":
+        edge_options = EdgeOptions()
+        edge_options.add_argument("--private")
+        context.driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()),
+                                        options=edge_options)
         context.driver.maximize_window()
         context.driver.get(url)
     elif context.browser == "Firefox":
