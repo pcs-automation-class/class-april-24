@@ -1,6 +1,7 @@
 def before_all(context):
     print("Before all")
     context.browser = "Chrome"
+    # context.browser = "Edge"
     # context.browser = "Firefox"
     # context.browser = "Opera"
 
