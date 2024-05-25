@@ -5,9 +5,9 @@ Feature: Login page tests
 #    Given Open "https://www.lifetwig.com/login" url
 #    Then Wait for "2" seconds
 #    Then Page contains element "//div[text()='Let’s Sign You In']"
-#    Then Type "makstester77@gmail.com" in field "//input[@placeholder='Email Address']"
+#    Then Type "*********77@gmail.com" in field "//input[@placeholder='Email Address']"
 #    Then Wait for "2" seconds
-#    Then Type "Kms_12345" in field "//input[@placeholder='Password']"
+#    Then Type "**********" in field "//input[@placeholder='Password']"
 #    Then Wait for "2" seconds
 #    Then Click on element "//button[@type='submit']"
 
