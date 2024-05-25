@@ -24,8 +24,7 @@ def open_url(context, url):
     if context.browser == "Chrome":
         chrome_options = Options()
         chrome_options.add_argument("--incognito")
-        context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),
-                                          options=chrome_options)
+        context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
         context.driver.maximize_window()
         context.driver.get(url)
     elif context.browser == "Firefox":

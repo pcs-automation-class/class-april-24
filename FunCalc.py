@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 
-
 class MoveWindowApp:
     def __init__(self, root):
         self.root = root
@@ -15,13 +14,11 @@ class MoveWindowApp:
         self.x = (self.screen_width - self.window_width) // 2
         self.y = (self.screen_height - self.window_height) // 2
         self.distance = 20
-        self.move_counter = 0  # Counter for window moves
+        self.move_counter = 0
 
         self.create_move_window()
         self.create_calculator()
-        self.center_window(self.root)  # Center the main window
-
-        # Bind the "q" key event to check for exit
+        self.center_window(self.root)
         self.root.bind('<Key>', self.check_key)
 
     def move_window(self, event=None):
@@ -44,9 +41,9 @@ class MoveWindowApp:
                 self.move_window()
             else:
                 self.root.geometry(f"{self.window_width}x{self.window_height}+{new_x}+{new_y}")
-                self.move_counter += 1  # Increment move counter
+                self.move_counter += 1
                 if self.move_counter == 10:
-                    self.move_counter = 0  # Reset move counter after 30 moves
+                    self.move_counter = 0
                     self.show_exit_prompt()
 
     def center_window(self, window):
@@ -125,9 +122,20 @@ class MoveWindowApp:
             else:
                 result = num1 / num2
 
+        # Handle cases when the result is infinity or NaN
+        if result == float("inf") or result == float("-inf") or result != result:
+            messagebox.showerror("Error", "The number entered is too large,\n enter a number of a smaller value!")
+            return
+
+        # Handle large numbers and limit to two decimal places
+        if abs(result) > 1e10 or (abs(result) > 0 and abs(result) < 1e-10):
+            result_str = "{:.2e}".format(result)
+        else:
+            result_str = "{:.2f}".format(result)
+
         function_string = f"{num1} {operation} {num2}"
 
-        self.result_label.config(text=f"Result: {result}\nFunction: {function_string}")
+        self.result_label.config(text=f"Result: {result_str}\nFunction: {function_string}")
 
         self.num1_entry.delete(0, tk.END)
         self.num2_entry.delete(0, tk.END)
@@ -142,8 +150,8 @@ class MoveWindowApp:
     def exit_app(self):
         self.root.destroy()
 
-
 if __name__ == "__main__":
     root = tk.Tk()
     app = MoveWindowApp(root)
     root.mainloop()
+
