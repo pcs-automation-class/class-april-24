@@ -5,7 +5,7 @@ Feature: Login page tests
 #    Given Open "https://www.lifetwig.com/login" url
 #    Then Wait for "2" seconds
 #    Then Page contains element "//div[text()='Let’s Sign You In']"
-#    Then Type "*********77@gmail.com" in field "//input[@placeholder='Email Address']"
+#    Then Type "*********@gmail.com" in field "//input[@placeholder='Email Address']"
 #    Then Wait for "2" seconds
 #    Then Type "**********" in field "//input[@placeholder='Password']"
 #    Then Wait for "2" seconds
@@ -15,7 +15,7 @@ Feature: Login page tests
     Given Open "https://www.lifetwig.com/" url
     Then Wait for "2" seconds
     Then Page contains element "//div[text()='Let’s Sign You In']"
-    Then Type "*******77@gmail.com" in field "//input[@placeholder='Email Address']"
+    Then Type "*******@gmail.com" in field "//input[@placeholder='Email Address']"
     Then Wait for "2" seconds
     Then Type "**********" in field "//input[@placeholder='Password']"
     Then Wait for "2" seconds
@@ -30,7 +30,7 @@ Feature: Login page tests
     Given Open "https://lifetwig.com/" url
     Then Wait for "2" seconds
     Then Page contains element "//div[text()='Let’s Sign You In']"
-    Then Type "***********7@gmail.com" in field "//input[@placeholder='Email Address']"
+    Then Type "***********@gmail.com" in field "//input[@placeholder='Email Address']"
     Then Type "*********" in field "//input[@placeholder='Password']"
     Then Click on element "//button[@type='submit']"
     Then Wait for "2" seconds
@@ -50,7 +50,7 @@ Feature: Login page tests
     Then Wait for "2" seconds
     Then Type "Second" in field "//input[@placeholder='Last Name']"
     Then Wait for "2" seconds
-    Then Type "**********77+5@gmail.com" in field "//input[@placeholder='Email address']"
+    Then Type "**********+5@gmail.com" in field "//input[@placeholder='Email address']"
     Then Wait for "2" seconds
     Then Type "***********" in field "//input[@placeholder='Password']"
     Then Wait for "2" seconds
@@ -66,7 +66,7 @@ Feature: Login page tests
     Given Open "https://www.lifetwig.com/login" url
     Then Wait for "2" seconds
     Then Page contains element "//div[text()='Let’s Sign You In']"
-    Then Type "*********77@gmail.com" in field "//input[@id='login_email']"
+    Then Type "*********@gmail.com" in field "//input[@id='login_email']"
     Then Wait for "2" seconds
     Then Type "*********" in field "//input[@id='login_password']"
     Then Wait for "2" seconds
@@ -95,7 +95,7 @@ Feature: Login page tests
     Given Open "https://www.lifetwig.com/login" url
     Then Wait for "2" seconds
     Then Page contains element "//div[text()='Let’s Sign You In']"
-    Then Type "**********77@gmail.com" in field "//input[@id='login_email']"
+    Then Type "**********@gmail.com" in field "//input[@id='login_email']"
     Then Wait for "2" seconds
     Then Type "*********" in field "//input[@id='login_password']"
     Then Wait for "2" seconds
@@ -124,7 +124,7 @@ Feature: Login page tests
     Given Open "https://www.lifetwig.com/login" url
     Then Wait for "2" seconds
     Then Page contains element "//div[text()='Let’s Sign You In']"
-    Then Type "**********77@gmail.com" in field "//input[@id='login_email']"
+    Then Type "**********@gmail.com" in field "//input[@id='login_email']"
     Then Wait for "2" seconds
     Then Type "**********" in field "//input[@id='login_password']"
     Then Wait for "2" seconds
@@ -141,7 +141,7 @@ Feature: Login page tests
     Given Open "https://www.lifetwig.com/login" url
     Then Wait for "2" seconds
     Then Page contains element "//div[text()='Let’s Sign You In']"
-    Then Type "***********77@gmail.com" in field "//input[@placeholder='Email Address']"
+    Then Type "***********@gmail.com" in field "//input[@placeholder='Email Address']"
     Then Wait for "2" seconds
     Then Type "*********" in field "//input[@placeholder='Password']"
     Then Wait for "2" seconds
@@ -159,7 +159,7 @@ Feature: Login page tests
     Given Open "https://www.lifetwig.com/login" url
     Then Wait for "2" seconds
     Then Page contains element "//div[text()='Let’s Sign You In']"
-    Then Type "********77@gmail.com" in field "//input[@placeholder='Email Address']"
+    Then Type "********@gmail.com" in field "//input[@placeholder='Email Address']"
     Then Wait for "2" seconds
     Then Type "**********" in field "//input[@placeholder='Password']"
     Then Wait for "2" seconds
